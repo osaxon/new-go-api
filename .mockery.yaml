@@ -1,0 +1,25 @@
+with-expecter: true
+# Default mock naming convention
+mockname: "{{.InterfaceName}}Mock"
+# Filename format for generated mocks
+filename: "{{.MockName}}.go"
+outpkg: "mocks"
+packages:
+  new-go-api/internal/database:
+    interfaces:
+      Querier:
+        # Output path for mocks
+        output: new-go-api/mocks
+        # File name convention for the generated mock
+        filename: querier_mock.go
+        package: mocks
+        # Specifies using the expecter (useful for Go 1.18+ to leverage testify mockery features)
+        with-expecter: true
+
+  new-go-api/internal/service:
+    interfaces:
+      UserService:
+        output: new-go-api/mocks
+        filename: user_service_mock.go
+        package: mocks
+        with-expecter: true
